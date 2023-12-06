@@ -41,7 +41,7 @@
               alt=""
               width="32"
               height="32"
-              class="rounded-circle"
+              class=" rounded-circle "
             />
           </td>
           
@@ -56,7 +56,7 @@
               alt=""
               width="32"
               height="32"
-              class="rounded-circle"
+              class=" rounded-circle"
             />
           </td>
          
