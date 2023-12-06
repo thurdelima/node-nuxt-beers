@@ -24,6 +24,7 @@ Route.group(() => {
   Route.delete('/categories/:id', 'CategoryController.delete');
 
   Route.post('/beers', 'BeerController.create')
+  Route.get('/beers', 'BeerController.getAllBeers');
   
 }).prefix('/api')
 

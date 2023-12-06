@@ -21,6 +21,17 @@ class BeerController {
       return response.status(500).json({ message: 'Internal server error' })
     }
   }
+
+  async getAllBeers({ response }) {
+    try {
+      const beers = await Beer.all();
+
+      return response.json(beers);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
 }
 
 module.exports = BeerController
