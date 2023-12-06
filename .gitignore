@@ -3,3 +3,46 @@ front-faster/.output
 front-faster/package-lock.json
 server-faster/node_modules
 server-faster/package-lock.json
+
+# Nuxt dev/build outputs
+front-faster/.output
+front-faster/.data
+front-faster/.nuxt
+front-faster/.nitro
+front-faster/.cache
+front-faster/dist
+
+# Node dependencies
+front-faster/node_modules
+
+# Logs
+front-faster/logs
+front-faster/*.log
+
+# Misc
+front-faster/.DS_Store
+front-faster/.fleet
+front-faster/.idea
+
+# Local env files
+front-faster/.env
+front-faster/.env.*
+front-faster/!.env.example
+
+
+
+server-faster/node_modules
+server-faster/package-lock.json
+
+# Adonis directory for storing tmp files
+server-faster/tmp
+
+# Environment variables, never commit this file
+server-faster/.env
+
+# The development sqlite file
+server-faster/database/*.sqlite
+
+# VSCode & Webstorm history directories
+server-faster/.history
+server-faster/.idea
