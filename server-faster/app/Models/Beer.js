@@ -14,6 +14,10 @@ class Beer extends Model {
     })
   }
 
+  category() {
+    return this.belongsTo('App/Models/Category');
+  }
+
   static get table() {
     return 'beers'
   }

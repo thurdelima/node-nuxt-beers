@@ -35,6 +35,29 @@ class CategoryController {
     }
   }
 
+  async getBeersByCategoryId({ params, response }) {
+    try {
+      // Validate params.id
+      if (!params.id) {
+        return response.status(400).json({ error: 'Category ID is required' });
+      }
+
+      const category = await Category.findOrFail(params.id);
+      const beers = await category.beers().fetch();
+
+      return response.json({ category, beers });
+    } catch (error) {
+      console.log(error)
+      if (error.name === 'ModelNotFoundException') {
+        // Category not found (404)
+        return response.status(404).json({ error: 'Category not found' });
+      }
+
+      // Internal server error (500)
+      return response.status(500).json({ error: 'Internal Server Error' });
+    }
+  }
+
   async update({ params, request, response }) {
     try {
       const categoryId = params.id;

@@ -19,6 +19,7 @@ const Route = use('Route')
 Route.group(() => {
   Route.post('/categories', 'CategoryController.create')
   Route.get('/categories', 'CategoryController.get')
+  Route.get('categories/:id/beers', 'CategoryController.getBeersByCategoryId');
   Route.put('/categories/:id', 'CategoryController.update');
   Route.delete('/categories/:id', 'CategoryController.delete');
 

@@ -7,18 +7,23 @@ class Category extends Model {
   static get table() {
     return 'categories';
   }
-
-  
   static get primaryKey() {
     return 'id';
   }
-
   
   static get fillable() {
-    return ['name'];
+    return [ 'name'];
   }
+
+  beers() {
+    return this.hasMany('App/Models/Beer');
+  }
+
+  
+
+  
   static get visible() {
-    return [ 'name']
+    return [ 'id', 'name']
   }
 
   get name() {
