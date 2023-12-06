@@ -12,11 +12,17 @@
 
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
+const Category = use('App/Models/Category');
 
 class CategorySeeder {
   async run () {
 
-    await Factory.model('App/Models/Category').createMany(10);
+    try {
+      await Factory.model('App/Models/Category').createMany(10);
+      
+    } catch (error) {
+      console.error(error)
+    }
   }
   
 }

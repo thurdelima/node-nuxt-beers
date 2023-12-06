@@ -13,10 +13,18 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 const Beer = use('App/Models/Beer');
+const Category = use('App/Models/Category');
 
 class BeerSeeder {
   async run() {
-    await Factory.model('App/Models/Beer').createMany(10);
+
+    try {
+    
+      await Factory.model('App/Models/Beer').createMany(10);
+    } catch (error) {
+      console.log(error)
+    }
+   
   }
 }
 
