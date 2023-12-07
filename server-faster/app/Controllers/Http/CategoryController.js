@@ -37,7 +37,7 @@ class CategoryController {
 
   async getBeersByCategoryId({ params, response }) {
     try {
-      // Validate params.id
+      
       if (!params.id) {
         return response.status(400).json({ error: 'Category ID is required' });
       }
@@ -49,11 +49,11 @@ class CategoryController {
     } catch (error) {
       console.log(error)
       if (error.name === 'ModelNotFoundException') {
-        // Category not found (404)
+        
         return response.status(404).json({ error: 'Category not found' });
       }
 
-      // Internal server error (500)
+      
       return response.status(500).json({ error: 'Internal Server Error' });
     }
   }
