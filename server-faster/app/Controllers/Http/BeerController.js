@@ -32,6 +32,23 @@ class BeerController {
       return response.status(500).json({ error: 'Internal Server Error' });
     }
   }
+
+  async getBeerById({ params, response }) {
+    try {
+      const beerId = params.id;
+      
+      const beer = await Beer.find(beerId);
+
+      if (!beer) {
+        return response.status(404).json({ message: 'Beer not found' });
+      }
+
+      return response.json(beer);
+    } catch (error) {
+      console.error(error);
+      return response.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
 }
 
 module.exports = BeerController

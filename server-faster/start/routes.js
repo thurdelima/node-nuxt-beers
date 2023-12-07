@@ -25,6 +25,7 @@ Route.group(() => {
 
   Route.post('/beers', 'BeerController.create')
   Route.get('/beers', 'BeerController.getAllBeers');
+  Route.get('/beers/:id', 'BeerController.getBeerById');
   
 }).prefix('/api')
 
