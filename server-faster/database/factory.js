@@ -35,7 +35,7 @@ Factory.blueprint('App/Models/Beer', async (faker, index, data) => {
   return {
     name: `Beer ${index + 1}`,
     description: `It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here ${index + 1}`,
-    image: data.image || `https://placekitten.com/300/300?image=${index + 1}`,
+    image: data.image || 'https://source.unsplash.com/200x300/?beer',
     category_id: index + 1,
   };
 });
