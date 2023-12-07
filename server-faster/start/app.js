@@ -36,6 +36,7 @@ const providers = [
 
 const aceProviders = [
   '@adonisjs/lucid/providers/MigrationsProvider',
+  '@adonisjs/vow/providers/VowProvider'
   //'App/Providers/ModelProvider',
   
 ]
@@ -53,7 +54,7 @@ const aceProviders = [
 |
 */
 const aliases = {
-  
+  //Models: 'App/Models',
 }
 
 /*
