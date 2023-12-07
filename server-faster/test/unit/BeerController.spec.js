@@ -4,12 +4,18 @@ const sinon = require('sinon');
 const { assert } = require('chai');
 const Beer = use('App/Models/Beer');
 
-const { test, trait, beforeEach } = use('Test/Suite')('BeerController test suite');
+const { test, trait, beforeEach, afterEach } = use('Test/Suite')('BeerController test suite');
 trait('Test/ApiClient');
 
-// beforeEach(() => {
-//   sinon.stub(Beer, 'create');
-// });
+beforeEach(() => {
+  //sinon.stub(Beer, 'create');
+  sinon.stub(Beer, 'find');
+});
+
+afterEach(() => {
+  
+  sinon.restore();
+});
 
 test('should return a list of beers', async ({ assert }) => {
   const fakeBeers = [{ name: 'Beer 1' }, { name: 'Beer 2' }];
@@ -88,5 +94,71 @@ test('should create a new beer', async () => {
 
   
   sinon.restore();
+});
+
+
+test('should get beer by ID', async ({ assert }) => {
+  
+  const expectedBeer = { id: 1, name: 'Test Beer', description: 'Test description', image: 'test.jpg', category_id: 1 };
+  
+  Beer.find.resolves(expectedBeer); 
+  
+  const beerController = new BeerController();
+  const response = await beerController.getBeerById({ params: { id: 1 }, response: { json: data => data } });
+
+  assert.deepEqual(response, expectedBeer);
+  
+});
+
+test('should handle beer not found', async ({ assert }) => {
+  
+  Beer.find.resolves(null);
+   
+  const beerController = new BeerController();
+  const response = await beerController.getBeerById({
+    params: { id: 1 },
+    response: {
+      status: (code) => {
+        return {
+          json: (data) => {
+            return {
+              statusCode: code,
+              _lazyBody: { content: data },
+            };
+          },
+        };
+      },
+    },
+  });
+
+
+
+  assert.equal(response.statusCode, 404);
+  assert.deepEqual(response._lazyBody.content, { message: 'Beer not found' });
+ 
+});
+
+
+test('should handle internal server error', async ({ assert }) => {
+  
+  Beer.find.rejects(new Error('Mocked internal server error'));
+    
+  const beerController = new BeerController();
+  const response = await beerController.getBeerById({ params: { id: 1 }, response: {
+    status: (code) => {
+      return {
+        json: (data) => {
+          return {
+            statusCode: code,
+            _lazyBody: { content: data },
+          };
+        },
+      };
+    },
+  } });
+
+  
+  assert.equal(response.statusCode, 500);
+  assert.deepEqual(response._lazyBody.content, { message: 'Internal Server Error' });
 });
 
