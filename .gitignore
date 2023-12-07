@@ -46,3 +46,5 @@ server-faster/database/*.sqlite
 # VSCode & Webstorm history directories
 server-faster/.history
 server-faster/.idea
+.nyc_output
+server-faster/test/coverage/

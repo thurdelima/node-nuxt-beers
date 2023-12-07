@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node ace test"
+    "test": " nyc adonis test"
   },
   "keywords": [
     "adonisjs",
@@ -27,6 +27,7 @@
     "@adonisjs/session": "^1.0.27",
     "@adonisjs/shield": "^1.0.8",
     "@adonisjs/vow": "^1.0.17",
+    "nyc": "^15.1.0",
     "pg": "^8.11.3"
   },
   "autoload": {
@@ -35,7 +36,6 @@
   "devDependencies": {
     "adonis-fold": "^3.0.3",
     "chai": "^4.3.10",
-    "jest": "^29.7.0",
     "mocha": "^10.2.0",
     "sinon": "^17.0.1"
   }
