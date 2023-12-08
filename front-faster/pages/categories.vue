@@ -1,4 +1,14 @@
 <template>
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb m-crumb">
+  <nuxt-link class="breadcrumb-item" :to="`/`"> 
+    Home
+    </nuxt-link>
+    <nuxt-link class="breadcrumb-item" :to="`/categories`"> 
+    Categories
+    </nuxt-link>
+  </ol>
+</nav>
   <div class="container-fluid">
     <div class="dashboard-title-cs">
       <h2 class="display-5">Categories <span class="emoji">📊</span></h2>
@@ -109,5 +119,15 @@ onMounted(() => {
 .h-loading {
   height: 40px;
   margin: 5px;
+}
+
+.m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
 }
 </style>

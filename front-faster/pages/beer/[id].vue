@@ -1,4 +1,17 @@
 <template>
+<nav aria-label="breadcrumb ">
+  <ol class="breadcrumb m-crumb">
+  <nuxt-link class="breadcrumb-item" :to="`/`"> 
+    Home
+    </nuxt-link>
+    <nuxt-link class="breadcrumb-item" :to="`/beers`"> 
+    Categories
+    </nuxt-link>
+      <nuxt-link class="breadcrumb-item" :to="`/beer/${route.params.id}`"> 
+    Beer Details
+    </nuxt-link>
+  </ol>
+</nav>
   <div class="container-fluid">
     <div class="dashboard-title-cs">
      <h2 v-if="loading" class="display-5">
@@ -45,7 +58,7 @@ import { ref, onMounted } from "vue";
 const loading = ref(true);
 
 const beer = ref([]);
-
+const route = useRoute();
 
 const fetchData = async () => {
   try {
@@ -110,6 +123,17 @@ onMounted(() => {
 }  
 
 
+.m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
+}
+
+
 
 @media (min-width: 1281px) {
   .img-w {
@@ -154,4 +178,7 @@ onMounted(() => {
     width: 50%;
   }
 }
+
+
+
 </style>
