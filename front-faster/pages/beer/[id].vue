@@ -1,39 +1,86 @@
 <template>
   <div class="container-fluid">
     <div class="dashboard-title-cs">
-      <h2 class="display-5">Beer test <span class="emoji">🍺</span></h2>
+     <h2 v-if="loading" class="display-5">
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-3 h-loading"></span>
+        </p>
+      </h2>
+      <h2 v-else class="display-5">Beer {{ beer.name }} <span class="emoji">🍺</span></h2>
       <p class="lead">Details about specific beer.</p>
     </div>
   </div>
 
   <div class="row featurette">
-    <div class="col-md-5">
+   <div v-if="loading" class="col-md-5 ">
+      <p class="card-text placeholder-glow ">
+          <span class="placeholder col-12  h-loading loading-avatar"></span>
+        </p>
+    </div>
+    <div v-else class="col-md-5">
       <img
-        src="https://mdbcdn.b-cdn.net/img/new/avatars/1.webp"
+        :src="beer.image"
         class="shadow-sm rounded-circle img-w"
         alt="Avatar"
       />
     </div>
     <div class="col-md-7">
-      <p class="lead">
-        <span class="text-body-secondary">Description: </span>Another
-        featurette? Of course. More placeholder content here to give you an idea
-        of how this layout would work with some actual real-world content in
-        place.
+    <p v-if="loading" class="lead">
+        <p class="card-text placeholder-glow">
+          <span class="placeholder col-12 h-loading"></span>
+          <span class="placeholder col-12 h-loading"></span>
+          <span class="placeholder col-12 h-loading"></span>
+        </p>
+      </p>
+      <p v-else class="lead">
+        <span class="text-body-secondary">Description: </span>{{ beer.description }}
       </p>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  name: "beerId",
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
 
-  async asyncData({ params }) {
-    const beerId = params.id;
-    return { beerId };
-  },
+const loading = ref(true);
+
+const beer = ref([]);
+
+
+const fetchData = async () => {
+  try {
+    const route = useRoute();
+    const response = await fetch(
+      `http://localhost:3333/api/beers/${route.params.id}`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    beer.value = data;
+    console.log(`beers: `, beer);
+    
+
+    loading.value = false;
+  } catch (error) {
+    console.error("Error fetching categories:", error.message);
+  }
 };
+
+onMounted(() => {
+  
+  fetchData();
+});
+
+
 </script>
 
 <style>
@@ -55,6 +102,12 @@ export default {
 .img-w {
     width: 70%;
   }
+
+.loading-avatar {
+  height: 25vh !important;
+    border-radius: 100% !important;
+    width: 25vh !important;
+}  
 
 
 
