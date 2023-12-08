@@ -5,91 +5,110 @@
       <p class="lead">Explore the world of beers in our dashboard.</p>
     </div>
   </div>
-  <div class="table-scrollable">
+
+  <div v-if="loading" class="text-center">
+    <p class="card-text placeholder-glow">
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+       <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+
+     
+   
+      
+    </p>
+  </div>
+  
+  
+  
+  
+  <div v-else class="table-scrollable">
     <table class="table">
       <thead>
         <tr>
           <th scope="col">id</th>
           <th scope="col">Name</th>
-          <th scope="col">Description</th>
           <th scope="col">Image</th>
+          <th scope="col">Description</th>
           <th scope="col">Category_id</th>
           <th scope="col">View</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
+        <tr v-for="beer in beers">
+          <th scope="row">{{beer.id}}</th>
+          <td>{{beer.name}}</td>
           <td>
             <img
-              src="https://github.com/mdo.png"
+              :src="beer.image"
               alt=""
               width="32"
               height="32"
               class="rounded-circle"
             />
           </td>
-          <td>1</td>
+           <td>{{beer.description}}</td>
+           <td>{{beer.category_id}}</td>
           <td>
-            <nuxt-link to="/beer/1"
+            <nuxt-link :to="`/beer/${beer.id}`"
               ><button type="button" class="btn btn-primary">
                 <i class="bi bi-eye-fill"></i></button
             ></nuxt-link>
           </td>
         </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <img
-              src="https://github.com/mdo.png"
-              alt=""
-              width="32"
-              height="32"
-              class="rounded-circle"
-            />
-          </td>
-          <td>1</td>
-          <td>
-            <nuxt-link to="/beer/1"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <img
-              src="https://github.com/mdo.png"
-              alt=""
-              width="32"
-              height="32"
-              class="rounded-circle"
-            />
-          </td>
-          <td>1</td>
-          <td>
-            <nuxt-link to="/beer/1"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
+
+         
+       
+        
       </tbody>
     </table>
   </div>
 </template>
 
-<script>
-export default {
-  name: "beers",
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+
+
+const beers = ref([]);
+const loading = ref(true);
+
+const fetchData = async () => {
+  try {
+    const response = await fetch("http://localhost:3333/api/beers", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    beers.value = data;
+   
+    loading.value = false;
+    
+  } catch (error) {
+    console.error("Error fetching categories:", error.message);
+  }
 };
+
+onMounted(() => {
+  fetchData();
+});
+
 </script>
 
 <style>
@@ -110,6 +129,11 @@ export default {
   overflow-x: auto;
   
   margin: auto;
+}
+
+.h-loading {
+  height: 40px;
+  margin: 5px;
 }
 
 
