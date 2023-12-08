@@ -30,7 +30,7 @@ Factory.blueprint('App/Models/Beer', async (faker, index, data) => {
   return {
     name: `Beer ${index + 1}`,
     description: `It is a long established fact that a reader will be distracted by the readable content of a page when looking  ${index + 1}`,
-    image: data.image || 'https://source.unsplash.com/200x300/?beer',
+    image: data.image || 'https://source.unsplash.com/250x250/?beer',
     category_id: index + 1,
   };
 });
