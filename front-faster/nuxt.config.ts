@@ -23,6 +23,8 @@ export default defineNuxtConfig({
     //'~/components/pages',
   ],
 
+  //modules: ['@nuxt/http'],  
+
   build: {
     transpile: ['bootstrap'],
   },

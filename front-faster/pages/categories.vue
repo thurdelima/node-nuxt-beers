@@ -6,8 +6,30 @@
     </div>
   </div>
 
-  <div class="table-scrollable">
-    <table class="table">
+  <div v-if="loading" class="text-center">
+    <p class="card-text placeholder-glow">
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+       <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+      <span class="placeholder col-12 h-loading"></span>
+
+     
+   
+      
+    </p>
+  </div>
+
+  <div v-else class="table-scrollable">
+    <table v-if="categories.length > 0" class="table">
       <thead>
         <tr>
           <th scope="col">id</th>
@@ -16,151 +38,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
+        <tr v-for="category in categories" :key="category.id">
+          <th scope="row">{{ category.id }}</th>
+          <td>{{ category.name }}</td>
           <td>
-            <nuxt-link to="/category/1"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/2"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/3"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/1"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/2"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/3"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/1"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/2"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/3"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/1"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/2"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/3"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/1"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/2"
-              ><button type="button" class="btn btn-primary">
-                <i class="bi bi-eye-fill"></i></button
-            ></nuxt-link>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td>Mark</td>
-          <td>
-            <nuxt-link to="/category/3"
+            <nuxt-link :to="`/category/${category.id}`"
               ><button type="button" class="btn btn-primary">
                 <i class="bi bi-eye-fill"></i></button
             ></nuxt-link>
@@ -168,19 +50,44 @@
         </tr>
       </tbody>
     </table>
+    <div v-else class="alert alert-warning" role="alert">
+      No categories available.
+    </div>
   </div>
 </template>
 
-<script lang="ts">
-export default {
-  name: "categories",
-  watchquery: ["page", "order", "q"],
-  methods: {
-    navigateToCategory(categoryId: number): void {
-      this.$router.push(`/category/${categoryId}`);
-    },
-  },
+<script setup lang="ts">
+import { onMounted, ref } from "vue";
+
+const categories = ref([]);
+const loading = ref(true);
+
+const fetchData = async () => {
+  try {
+    const response = await fetch("http://localhost:3333/api/categories", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    categories.value = data;
+    loading.value = false;
+    
+  } catch (error) {
+    console.error("Error fetching categories:", error.message);
+  }
 };
+
+onMounted(() => {
+  fetchData();
+});
 </script>
 
 <style>
@@ -197,5 +104,10 @@ export default {
   overflow-x: auto;
 
   margin: auto;
+}
+
+.h-loading {
+  height: 40px;
+  margin: 5px;
 }
 </style>
