@@ -20,4 +20,77 @@ body {
 }
 
 
+
+
+@media (min-width: 1281px) {
+  .m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
+}
+}
+
+@media (min-width: 1025px) {
+ .m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
+}
+}
+
+@media (min-width: 801px) {
+.m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
+}
+}
+
+@media (min-width: 600px) {
+ .m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
+}
+}
+
+@media (min-width: 480px) {
+  .m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
+}
+}
+
+@media (min-width: 320px) {
+ .m-crumb {
+  margin: 10px;
+
+}
+
+a {
+ text-decoration: auto;
+ color: rgba( 0, 0, 0 , 0.65);
+}
+}
 </style>

@@ -114,6 +114,7 @@ onMounted(() => {
 
 .img-w {
     width: 70%;
+    margin: 10px;
   }
 
 .loading-avatar {
@@ -138,24 +139,28 @@ a {
 @media (min-width: 1281px) {
   .img-w {
     width: 70%;
+    margin: 10px;
   }
 }
 
 @media (min-width: 1025px) {
   .img-w {
     width: 70%;
+     margin: 10px;
   }
 }
 
 @media (min-width: 801px) {
   .img-w {
     width: 50%;
+     margin: 10px;
   }
 }
 
 @media (min-width: 600px) {
   .img-w {
     width: 70%;
+     margin: 10px;
   }
 }
 
@@ -166,6 +171,7 @@ a {
 
   .img-w {
     width: 50%;
+     margin: 10px;
   }
 }
 
@@ -176,6 +182,7 @@ a {
 
   img-w: {
     width: 50%;
+     margin: 10px;
   }
 }
 
