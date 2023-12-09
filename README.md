@@ -5,7 +5,7 @@ Node and nuxt project based faster test.
 ## 🪧 Demonstration:
 
 <div align="center" >
-  <img src="./beers.gif">
+  <img src="./beers-demo.gif">
 </div>
 
 ## 🧰 Backend:
