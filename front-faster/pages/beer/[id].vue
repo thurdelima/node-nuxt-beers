@@ -5,7 +5,7 @@
     Home
     </nuxt-link>
     <nuxt-link class="breadcrumb-item" :to="`/beers`"> 
-    Categories
+    Beers
     </nuxt-link>
       <nuxt-link class="breadcrumb-item" :to="`/beer/${route.params.id}`"> 
     Beer Details
